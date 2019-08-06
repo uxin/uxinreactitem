@@ -13,7 +13,7 @@ export default class extends React.PureComponent{
                 <Route path="/theater" component={Theater} />
                 <Route path="/ticketFolder" component={TicketFolder} />
                 <Route path="/my" component={My} />
-                <Redirect path="/" to="/index"/>
+                <Redirect path="/" to="/theater"/>
             </Fragment>
         )
     }

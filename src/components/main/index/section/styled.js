@@ -59,6 +59,8 @@ b, strong, i, em{
 
 //  城市
 export const CityDiv = styled.div`
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     position:relative;
     top:0;
@@ -195,7 +197,9 @@ export const IndexHeader = styled.header`
     width:100%;
     height: ${r(44)};
     box-sizing:border-box;
-    background-color:rgba(0,0,0,0);
+    background-color:${props=>{
+        return props.heightNum  ? "rgba(255,255,255, 1)" : "rgba(0, 0, 0, 0)";
+    }};
     position:fixed;
     top:0;
     display:flex;
@@ -209,21 +213,29 @@ export const IndexHeader = styled.header`
         /* width: ${r(58)}; */
         width:15.4667vw;
         height: ${r(28)};
-        border: 1px solid #000;
+        border:${props => {
+            return props.heightNum ? "none" : "1px solid hsla(0,0%,88%,.3)";
+        }};
         border-radius:${r(17)};
         display:flex;
         justify-content:center;
         align-items:center;
-        background-color: rgba(0,0,0,.3);
+        background-color:${props => {
+            return props.heightNum ? "rgba(255,255,255, 1)" : "rgba(0,0,0,.3)";
+        }};
 
             .fa-map-marker{
-                color:#fff;
+                color:${props => {
+                    return props.heightNum ? "red" : "#fff";
+                }};
                 margin-right: ${r(10)};
             }
             span{
                 font-size:${r(16)};
                 font-weight:700;
-                color:#fff;
+                color:${props => {
+                    return props.heightNum ? "#000" : "#fff";
+                }};
                 white-space:nowrap;
                 overflow: hidden;
                 text-overflow:ellipsis;
@@ -236,11 +248,13 @@ export const IndexHeader = styled.header`
                 width: 63.4667vw;
                 height: ${r(26)};
                 border:0;
-                border: 1px solid #000;
+                border: 1px solid hsla(0,0%,88%,.3);
                 border-radius:${r(17)};
                 text-indent:${r(20)};
                 color:#fff;
-                background-color: rgba(0,0,0,.3);
+                background-color:${props=>{
+                    return props.heightNum  ? "#f5f5f5" : "rgba(0, 0, 0, 0.3)";
+                }};
                 margin-left: 1.0667vw;
                 &:focus {
                 outline: none;
@@ -526,6 +540,7 @@ export const CardDiv = styled.div`
                         line-height:${r(22)};
                         color: #232323;
                         font-size:${r(15)} ;
+                        margin-top:${r(10)};
                     }
                     p{
                         line-height:${r(20)};
@@ -537,7 +552,7 @@ export const CardDiv = styled.div`
                 .li_img{
                     width:${r(44)} ;
                     height: ${r(45)};
-                    margin-left: 28px;
+                    margin-left: ${r(32)};
                     img{
                         width: 100%;
                         height: 100%;
@@ -555,6 +570,8 @@ export const HotProgramDiv = styled.div`
     overflow: hidden;
     .HotProgram_title{
         overflow: hidden;
+        padding-right:${r(15)};
+        box-sizing:border-box;
         h3{
             float: left;
             height: ${r(23)};
@@ -568,6 +585,7 @@ export const HotProgramDiv = styled.div`
         }
     }
 
+    /* swiper的滑动轮播 */
     .swiper-container.swiper-container-horizontal{
         width:100%;
         height:${props => {
@@ -580,6 +598,7 @@ export const HotProgramDiv = styled.div`
                 img{
                     width:100%;
                     height:${r(146)};
+                    border-radius: 3px;
                 }
                 h3{
                     width: 100%;
@@ -593,6 +612,153 @@ export const HotProgramDiv = styled.div`
                     white-space: nowrap;
                     margin-right:${r(15)};
                     margin-top: ${r(5)};
+                }
+            }
+        }
+    }
+`
+
+export const TourProgramDiv=styled.div`
+    padding:${r(20)} 0;
+   box-sizing:border-box;
+   overflow: hidden;
+   background-color: #f5f5f5;
+    .TourProgram_title{
+        overflow: hidden;
+        padding:0 ${r(15)};
+        box-sizing:border-box;
+        h3{
+            float: left;
+            height: ${r(23)};
+            line-height:${r(23)} ;
+            font-size: ${r(20)};
+            font-weight: 700;
+            color: #232323;
+        }
+        span{
+            float: right;
+        }
+    }
+
+    /* swiper的滑动轮播 */
+    .swiper-container.swiper-container-horizontal{
+        width:100%;
+        height:${props => {
+        return props.height ? props.height : "200px"
+    }};
+    margin-top: ${r(20)};
+        .swiper-wrapper{
+                .swiper-slide{
+                    margin-right:${r(20)};
+                img{
+                    width:${r(245)};
+                    height:${r(140)};
+                    border-radius: 3px;
+                }
+                h3{
+                    width: 100%;
+                    height:${r(25)};
+                    line-height: ${r(25)};
+                    font-size: ${r(15)};
+                    color: #232323;
+                    font-weight: 700;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                    margin-right:${r(15)};
+                    margin-top: ${r(5)};
+                }
+            }
+        }
+    }
+`
+
+// 推荐
+export const RecommendDiv=styled.div`
+    padding:0 ${r(15)};
+    margin-top: ${r(30)};
+    box-sizing:border-box;
+    .Recommend_title{
+        width: 100%;
+        overflow: hidden;
+        h3{
+            height:${r(26)} ;
+            line-height:${r(26)};
+            font-size: ${r(20)};
+            font-weight: 700;
+            color: #232323;
+            float: left;
+        }
+    }
+    ul{
+        margin-top: ${r(20)};
+        overflow: hidden;
+        li{
+            margin-bottom: ${r(23)};
+            overflow: hidden;
+            .Recommend_img{
+                width:${r(110)} ;
+                height:${r(150)};
+                float: left;
+                border-radius: .10667rem;
+                border: 1px solid #ebebeb;
+                margin-right:${r(15)};
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .Recommend_details{
+                /* float: right; */
+                margin-top:${r(5)};
+                overflow: hidden;
+                p{
+                    text-align:left;
+                }
+                .Recommend_date{
+                    height:${r(24)};
+                    line-height:${r(24)};
+                    font-size:${r(16)} ;
+                    color:#232323;
+                    i{
+                        font-size:${r(12)};
+                        margin-left: ${r(4)};
+                    }
+                }
+                h3{
+                    font-size:${r(17)} ;
+                    margin-top:${r(12)};
+                    color: #232323;
+                    font-weight:700;
+                    text-align:left;
+                    display:-webkit-box;
+                    -webkit-box-orient:vertical;
+                    -webkit-line-clamp:2;
+                    overflow: hidden;
+                    line-height: .6rem;
+                }
+                .Recommend_city{
+                    height: ${r(24)};
+                    line-height:${r(24)};
+                    margin-top:${r(12)};
+                    font-size:${r(12)} ;
+                    color:#666;
+                }
+                .Recommend_money{
+                    margin-top:${r(10)};
+                    overflow: hidden;
+                    span{
+                        font-size:${r(16)};
+                        color: #ff6743;
+                        font-weight: 400;
+                        margin-right:${r(5)};
+                    }
+                    i{
+                        font-size: ${r(11)};
+                        color: #999;
+                        height: ${r(18)};
+                        line-height: ${r(18)};
+                    }
                 }
             }
         }

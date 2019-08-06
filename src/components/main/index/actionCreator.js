@@ -7,10 +7,16 @@ export const GET_INDEX_HOTCITY = "index/get_index_hotCity";
 export const GET_INDEX_MORECITY = "index/get_index_moreCity";
 // 设置首页
 export const SET_INDEX_DATA = "index/set_index_data";
-//首页
+// 首页
 export const SET_INDEX_DATALIST = "index/set_index_dataList";
-//热门演出
-export const SET_INDEX_HOTPROGRAM = "index/set_index_hotProgram";
+// 活动
+export const GET_INDEX_ACTIVITY = "index/get_index_activity";
+// 热门演出
+export const GET_INDEX_HOTPROGRAM = "index/get_index_hotProgram";
+// 巡回演出
+export const GET_INDEX_TOURPROGRAM = "index/get_index_tourProgram";
+// 为你推荐
+export const GET_INDEX_RECOMMEND ="index/get_index_recommend";
 
 export const action = (val,type) => {
     return {
@@ -30,7 +36,6 @@ export const loadHotCityDataAsync = (dispatch) => {
         })
     }
 }
-
 // 更多城市
 export const loadMoreCityAsync = (dispatch) => {
     return () => {
@@ -61,6 +66,24 @@ export const loadIndexAsync = (dispatch, currentCity) => {
     }
 }
 
+// 活动
+export const loadIndexActivityAsync = (dispatch) => {
+    return () => {
+        request({
+            method: "get",
+            url: "/vip/index/getVipHomeSchedular",
+            params: {
+                version: "6.0.3",
+                referer: "2"
+            }
+        }).then((res) => {
+            dispatch(action(res, GET_INDEX_ACTIVITY));
+        })
+    }
+}
+
+
+
 // 热门演出
 export const loadIndexHotProgramAsync = (dispatch,id) => {
     return () => {
@@ -73,38 +96,42 @@ export const loadIndexHotProgramAsync = (dispatch,id) => {
                 referer: "2"
             }
         }).then((res) => {
-            dispatch(action(res, SET_INDEX_HOTPROGRAM));
+            dispatch(action(res, GET_INDEX_HOTPROGRAM));
         })
     }
 }
 
+// 巡回演出
+export const loadIndexTourProgramAsync = (dispatch, id) => {
+    return () => {
+        request({
+            method: "get",
+            url: "/home/index/getTourRecommendList",
+            params: {
+                city_id: id,
+                version: "6.0.1",
+                referer: "2"
+            }
+        }).then((res) => {
+            dispatch(action(res, GET_INDEX_TOURPROGRAM));
+        })
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-// 首页
-// export const loadIndexAsync = (dispatch, currentCity) => {
-//     return () => {
-//         request({
-//             method: "get",
-//             url: "/home/index/getClassifyHome",
-//             params:{
-//                 city_id:currentCity.city_id,
-//                 abbreviation:currentCity.abbreviation||"",
-//                 version:currentCity.version,
-//                 referer:currentCity.referer,
-//                 name: currentCity.name
-//             }
-//         }).then((res) => {
-//             dispatch(action(res, SET_INDEX_DATA));
-//         })
-//     }
-// }
+// 为你推荐
+export const loadIndexRecommendAsync=(dispatch)=>{
+    return () => {
+        request({
+            method: "get",
+            url: "/home/index/getRecommendShow",
+            params: {
+                cityAdd:"",
+                page: "1",
+                version: "6.0.1",
+                referer: "2"
+            }
+        }).then((res) => {
+            dispatch(action(res, GET_INDEX_RECOMMEND));
+        })
+    }
+}

@@ -13,7 +13,7 @@ class Card extends PureComponent {
                     <div className="Card_box">
                         <ul className="Card_top">
                             {
-                                this.props.indexData.get("operation_list").map((item,index)=>(
+                                this.props.indexData.get("operation_list").slice(0,2).map((item,index)=>(
                                     <li key={index}>
                                         <div className="li_txt">
                                             <h3>{item.name}</h3>
@@ -27,17 +27,19 @@ class Card extends PureComponent {
                             }
                         </ul>
                         <ul className="Card_bottom">
-                            <li>
-                                <div className="li_txt">
-                                    <h3>积分商城</h3>
-                                    <p>用积分,0元购票</p>
-                                </div>
-                                <div className="li_img">
-                                    <img src="https://image.juooo.com/group1/M00/02/D0/rAoKmV0jZBGAD_e4AAAE27hwBgs927.png" alt="" />
-                                </div>
-                            </li>
-                            <li></li>
-                            <li></li>
+                            {
+                                this.props.indexData.get("operation_list").slice(2,).map((item, index) => (
+                                    <li key={index}>
+                                        <div className="li_txt">
+                                            <h3>{item.name}</h3>
+                                            <p>用积分,0元购票</p>
+                                        </div>
+                                        <div className="li_img">
+                                            <img src={item.pic} alt="" />
+                                        </div>
+                                    </li>
+                                ))
+                            }
                         </ul>
                     </div>
                 </CardDiv>

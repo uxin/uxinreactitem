@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';  //Fragment 虚拟节点
 import { connect } from "react-redux";
 import { HotProgramDiv } from "@/components/main/index/section/styled";
 import { loadIndexHotProgramAsync } from "@/components/main/index/actionCreator";
-import Swiper from "@/components/layout/swiper"
+import Swiper from "@/components/layout/swiper";
 
 // 热门演出
 class HotProgram extends PureComponent {
@@ -16,14 +16,14 @@ class HotProgram extends PureComponent {
                         <span>></span>
                     </div>
 
-                    <Swiper height={"580px"} swiperConfig={{ slidesPerView: 3 }}>
+                        <Swiper height={"580px"} swiperConfig={{ slidesPerView: 3, freeMode: true, slidesOffsetAfter: 97, }}>
                         {
-                                this.props.hotProgram.map((item,index)=>(
-                                    <div className="swiper-slide" key={index}>
-                                        <img src={item.get("pic")} alt=""/>
-                                        <h3>{item.get("show_name")}</h3>
-                                    </div>
-                                ))
+                            this.props.hotProgram.map((item,index)=>(
+                                <div className="swiper-slide" key={index}>
+                                    <img src={item.get("pic")} alt=""/>
+                                    <h3>{item.get("show_name")}</h3>
+                                </div>
+                            ))
                         }
                     </Swiper>
                 </HotProgramDiv>

@@ -3,21 +3,30 @@ import { connect } from "react-redux";
 import { IndexHeader, CityDiv } from "@/components/main/index/section/styled";
 import 'font-awesome/css/font-awesome.css'
 import { loadHotCityDataAsync, loadMoreCityAsync, SET_INDEX_DATA } from "@/components/main/index/actionCreator";
+import Banner from "@/components/main/index/section/banner";
+import VocalConcert from "@/components/main/index/section/vocalConcert";
+import Activity from "@/components/main/index/section/activity";
+import Card from "@/components/main/index/section/card";
+import HotProgram from "@/components/main/index/section/hotProgram";
+import TourProgram from "@/components/main/index/section/tourProgram";
+import Recommend from "@/components/main/index/section/recommend";
 
 class City extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             isCity: true,
+            heightNum:"",
+            qq:""
         }
     }
     render() {
-
+        // console.log(this.state.heightNum);
         if (this.state.isCity) {
             return (
                 <Fragment>
-                    <IndexHeader>
-                        <div className="city">
+                    <IndexHeader heightNum={this.state.heightNum}>
+                        <div className="city" >
                             <div className="city_box" onClick={() => {
                                 this.setState({ isCity: !this.state.isCity })
                             }}>
@@ -32,6 +41,14 @@ class City extends PureComponent {
                             </div>
                         </div>
                     </IndexHeader>
+                    <Banner />
+                    <VocalConcert />
+                    <Activity />
+                    <Card />
+                    <HotProgram />
+                    <TourProgram/>
+                    <Recommend/>
+                    <div style={{ "winth": "100%", "height": "1.3rem" }}></div>
                 </Fragment>
             )
         } else if (this.props.hotCityList.size !== 0 & this.props.moreCityList.size !== 0) {
@@ -72,11 +89,11 @@ class City extends PureComponent {
                         {
                             this.props.moreCityList.map((item,index)=>(
                                 <div className="city_sort" key={index}>
-                                    <h2>{item.get("id")}</h2>
+                                    <h2 id="h2Hrinth">{item.get("id")}</h2>
                                     <ul>
                                         {
                                             item.get("list").map((itemList, indexList)=>(
-                                                <li key={indexList} onClick={this.props.handleCity.bind(this, itemList)}>{itemList.get("name")}</li>
+                                                <li  key={indexList} onClick={this.props.handleCity.bind(this, itemList)}>{itemList.get("name")}</li>
                                             ))
                                         }
                                     </ul>
@@ -91,7 +108,7 @@ class City extends PureComponent {
                             <li>热门</li>
                             {
                                 this.props.moreCityList.map((item,index)=>(
-                                    <li key={index}>{item.get("id")}</li>
+                                    <li key={index} onClick={this.scrollsqq.bind(this,index)}>{item.get("id")}</li>
                                 ))
                             }
                         </ul>
@@ -102,7 +119,51 @@ class City extends PureComponent {
     }
     componentDidMount() {
         this.props.handleGetHotCityData.bind(this)();
+        window.addEventListener('scroll', this.handleScroll.bind(this));
+
     }
+    handleScroll(){
+          //获取滚动条的高度
+        // console.log(window.scrollY);
+
+        this.setState({
+            heightNum: window.scrollY
+        })
+
+    }
+    scrollsqq(index){
+        if (index===0){
+            document.documentElement.scrollTop = 788
+        } else if (index===1){
+            document.documentElement.scrollTop = 973
+        } else if (index === 2) {
+            document.documentElement.scrollTop = 1410
+        } else if (index === 3) {
+            document.documentElement.scrollTop = 2000
+        } else if (index === 4) {
+            document.documentElement.scrollTop = 2640
+        } else if (index === 5) {
+            document.documentElement.scrollTop = 2724
+        } else if (index === 6) {
+            document.documentElement.scrollTop = 3200
+        } else if (index === 7) {
+            document.documentElement.scrollTop = 3342
+        } else if (index === 8) {
+            document.documentElement.scrollTop = 4340
+        } else if (index === 9) {
+            document.documentElement.scrollTop = 2980
+        } else if (index === 10) {
+            document.documentElement.scrollTop = 5112
+        } else if (index ===11) {
+            document.documentElement.scrollTop = 5958
+        } else if (index === 12) {
+            document.documentElement.scrollTop = 6224
+        } else if (index === 21) {
+            document.documentElement.scrollTop = 10536
+        }
+
+    }
+
 }
 
 const mapStateToProps = (state) => {

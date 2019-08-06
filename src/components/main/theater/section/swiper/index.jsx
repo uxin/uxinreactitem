@@ -1,10 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';  //Fragment 虚拟节点
-import SwiperNew from "swiper/dist/js/swiper.js";
+import SwiperTheater from "swiper/dist/js/swiper.js";
 import "swiper/dist/css/swiper.css";
 
-
 class Swiper extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
     render() {
@@ -22,7 +21,9 @@ class Swiper extends PureComponent {
         this.swiperInit.bind(this)();
     }
     swiperInit() {
-        new SwiperNew('.swiper-container', this.props.swiperConfig);
+        new SwiperTheater('.swiper-container',{
+            slidesPerView: 3, freeMode: true, slidesOffsetAfter: 40,
+        });
     }
 }
 export default Swiper;
