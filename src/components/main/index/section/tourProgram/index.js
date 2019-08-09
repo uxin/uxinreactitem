@@ -14,7 +14,7 @@ class TourProgram extends PureComponent {
                     <h3>巡回演出</h3>
                     <span>></span>
                 </div>
-                    <Swiper swiperConfig={{ slidesPerView: 3, freeMode: true, slidesOffsetAfter: 97, }}>
+                    <Swiper id={"TourProgram"} swiperConfig={{ slidesPerView: 1.5, freeMode: false, spaceBetween: 20, slidesOffsetBefore: 68, slidesOffsetAfter: 70 }}>
                     {
                         this.props.tourProgram.map((item,index)=>(
                             <div className="swiper-slide" data-history="1" key={index}>

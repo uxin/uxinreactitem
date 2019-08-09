@@ -82,8 +82,6 @@ export const loadIndexActivityAsync = (dispatch) => {
     }
 }
 
-
-
 // 热门演出
 export const loadIndexHotProgramAsync = (dispatch,id) => {
     return () => {
@@ -119,14 +117,14 @@ export const loadIndexTourProgramAsync = (dispatch, id) => {
 }
 
 // 为你推荐
-export const loadIndexRecommendAsync=(dispatch)=>{
+export const loadIndexRecommendAsync = (dispatch, recommend)=>{
     return () => {
         request({
             method: "get",
             url: "/home/index/getRecommendShow",
             params: {
-                cityAdd:"",
-                page: "1",
+                cityAdd: recommend.cityAdd,
+                page: recommend.page,
                 version: "6.0.1",
                 referer: "2"
             }

@@ -6,7 +6,7 @@ export const FootTab = styled.div`
 width:100%;
 position:fixed;
 bottom:0;
-z-index: 1000;
+z-index: 100;
 
 .am-tab-bar-bar{
     height:${r(50)};

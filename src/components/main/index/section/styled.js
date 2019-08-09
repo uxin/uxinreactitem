@@ -618,6 +618,7 @@ export const HotProgramDiv = styled.div`
     }
 `
 
+// 巡回演出
 export const TourProgramDiv=styled.div`
     padding:${r(20)} 0;
    box-sizing:border-box;
@@ -649,10 +650,10 @@ export const TourProgramDiv=styled.div`
     margin-top: ${r(20)};
         .swiper-wrapper{
                 .swiper-slide{
-                    margin-right:${r(20)};
+                    /* margin-right:${r(20)}; */
                 img{
                     width:${r(245)};
-                    height:${r(140)};
+                    height:${r(126)};
                     border-radius: 3px;
                 }
                 h3{
@@ -670,14 +671,26 @@ export const TourProgramDiv=styled.div`
                 }
             }
         }
+        .swiper-slide.swiper-slide-active{
+            img{
+                width:${r(245)};
+                height:${r(140)};
+            }
+        }
+        .swiper-slide.swiper-slide-next{
+            padding-top:${r(8)};
+            box-sizing:border-box;
+        }
+        .swiper-slide.swiper-slide-prev{
+            padding-top:${r(8)};
+            box-sizing:border-box;
+        }
     }
 `
 
 // 推荐
 export const RecommendDiv=styled.div`
-    padding:0 ${r(15)};
-    margin-top: ${r(30)};
-    box-sizing:border-box;
+    overflow: scroll;
     .Recommend_title{
         width: 100%;
         overflow: hidden;
@@ -688,11 +701,22 @@ export const RecommendDiv=styled.div`
             font-weight: 700;
             color: #232323;
             float: left;
+            &.Recommend_title_h3{
+                padding:0 ${r(15)};
+                box-sizing:border-box;
+            }
         }
     }
     ul{
-        margin-top: ${r(20)};
+        margin-top:${props=>{
+    return props.m_t? props.m_t : "20px"
+        }};
         overflow: hidden;
+        &.Recommend_ul{
+            padding:0 ${r(15)};
+            padding:${props => props.padding ? props.padding :"0 ${r(15)}"};
+            box-sizing:border-box;
+        }
         li{
             margin-bottom: ${r(23)};
             overflow: hidden;

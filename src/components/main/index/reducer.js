@@ -47,7 +47,7 @@ export default (state = defaultStore, action) => {
         return state.update("tourProgram", (val) => val = fromJS(res));
     } else if (action.type === GET_INDEX_RECOMMEND){
         let res = action.val.data.data.recommend_show_list;
-        return state.update("recommend", (val) => val = fromJS(res));
+        return state.update("recommend", (val) => val =val.concat( fromJS(res)));
     } else if (action.type === GET_INDEX_ACTIVITY){
         let res = action.val.data.data.priorList;
         return state.update("activity", (val) => val = fromJS(res));

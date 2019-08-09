@@ -10,7 +10,7 @@ class Swiper extends PureComponent {
     render() {
         return (
             <Fragment>
-                <div className="swiper-container" height={this.props.height} >
+                <div className="swiper-container" id={this.props.id}>
                     <div className="swiper-wrapper">
                         {this.props.children}
                     </div>
@@ -22,7 +22,7 @@ class Swiper extends PureComponent {
         this.swiperInit.bind(this)();
     }
     swiperInit() {
-        new SwiperNew('.swiper-container', this.props.swiperConfig);
+        new SwiperNew('#' + this.props.id, this.props.swiperConfig);
     }
 }
 export default Swiper;

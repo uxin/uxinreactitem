@@ -16,7 +16,7 @@ class HotProgram extends PureComponent {
                         <span>></span>
                     </div>
 
-                        <Swiper height={"580px"} swiperConfig={{ slidesPerView: 3, freeMode: true, slidesOffsetAfter: 97, }}>
+                        <Swiper id={"HotProgram"} swiperConfig={{ slidesPerView: 3, freeMode: true, slidesOffsetAfter: 97, }}>
                         {
                             this.props.hotProgram.map((item,index)=>(
                                 <div className="swiper-slide" key={index}>

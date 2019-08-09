@@ -4,7 +4,6 @@ export default class extends React.Component {
     render() {
         return (
             <Fragment>
-                <div>我的组件</div>
             </Fragment>
         )
     }

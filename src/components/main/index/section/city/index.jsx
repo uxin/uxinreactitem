@@ -16,8 +16,8 @@ class City extends PureComponent {
         super(props);
         this.state = {
             isCity: true,
-            heightNum:"",
-            qq:""
+            heightNum: "",
+            qq: ""
         }
     }
     render() {
@@ -41,15 +41,17 @@ class City extends PureComponent {
                             </div>
                         </div>
                     </IndexHeader>
-                    <Banner />
-                    <VocalConcert />
-                    <Activity />
-                    <Card />
-                    <HotProgram />
-                    <TourProgram/>
-                    <Recommend/>
-                    <div style={{ "winth": "100%", "height": "1.3rem" }}></div>
+                    <Recommend>
+                        <Banner />
+                        <VocalConcert />
+                        <Activity />
+                        <Card />
+                        <HotProgram />
+                        <TourProgram />
+                    </Recommend>
+                    <div style={{ winth: "100%", height: "1.3rem" }}></div>
                 </Fragment>
+
             )
         } else if (this.props.hotCityList.size !== 0 & this.props.moreCityList.size !== 0) {
             return (
@@ -87,13 +89,13 @@ class City extends PureComponent {
 
                     <div className="city_body">
                         {
-                            this.props.moreCityList.map((item,index)=>(
+                            this.props.moreCityList.map((item, index) => (
                                 <div className="city_sort" key={index}>
                                     <h2 id="h2Hrinth">{item.get("id")}</h2>
                                     <ul>
                                         {
-                                            item.get("list").map((itemList, indexList)=>(
-                                                <li  key={indexList} onClick={this.props.handleCity.bind(this, itemList)}>{itemList.get("name")}</li>
+                                            item.get("list").map((itemList, indexList) => (
+                                                <li key={indexList} onClick={this.props.handleCity.bind(this, itemList)}>{itemList.get("name")}</li>
                                             ))
                                         }
                                     </ul>
@@ -107,8 +109,8 @@ class City extends PureComponent {
                             <li>定位</li>
                             <li>热门</li>
                             {
-                                this.props.moreCityList.map((item,index)=>(
-                                    <li key={index} onClick={this.scrollsqq.bind(this,index)}>{item.get("id")}</li>
+                                this.props.moreCityList.map((item, index) => (
+                                    <li key={index} onClick={this.scrollsqq.bind(this, index)}>{item.get("id")}</li>
                                 ))
                             }
                         </ul>
@@ -122,8 +124,8 @@ class City extends PureComponent {
         window.addEventListener('scroll', this.handleScroll.bind(this));
 
     }
-    handleScroll(){
-          //获取滚动条的高度
+    handleScroll() {
+        //获取滚动条的高度
         // console.log(window.scrollY);
 
         this.setState({
@@ -131,10 +133,10 @@ class City extends PureComponent {
         })
 
     }
-    scrollsqq(index){
-        if (index===0){
+    scrollsqq(index) {
+        if (index === 0) {
             document.documentElement.scrollTop = 788
-        } else if (index===1){
+        } else if (index === 1) {
             document.documentElement.scrollTop = 973
         } else if (index === 2) {
             document.documentElement.scrollTop = 1410
@@ -154,7 +156,7 @@ class City extends PureComponent {
             document.documentElement.scrollTop = 2980
         } else if (index === 10) {
             document.documentElement.scrollTop = 5112
-        } else if (index ===11) {
+        } else if (index === 11) {
             document.documentElement.scrollTop = 5958
         } else if (index === 12) {
             document.documentElement.scrollTop = 6224
@@ -170,7 +172,7 @@ const mapStateToProps = (state) => {
     return {
         hotCityList: state.getIn(["indexReducer", "hotCityList"]),
         moreCityList: state.getIn(["indexReducer", "moreCityList"]),
-        currentCity: state.getIn(["indexReducer","currentCity"]),
+        currentCity: state.getIn(["indexReducer", "currentCity"]),
     }
 }
 const mapDispatchToProps = (dispatch) => ({
@@ -178,11 +180,11 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(loadHotCityDataAsync(dispatch));
         dispatch(loadMoreCityAsync(dispatch))
     },
-    handleCity(itemList){
+    handleCity(itemList) {
         let temp = itemList.toJS();
         temp.type = SET_INDEX_DATA;
         dispatch(temp);
-        this.setState({isCity:!this.state.isCity});
+        this.setState({ isCity: !this.state.isCity });
     }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(City);

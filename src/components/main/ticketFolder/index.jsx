@@ -1,10 +1,13 @@
-import React, { Fragment } from 'react';  //Fragment 虚拟节点
+import React, { Fragment, PureComponent } from 'react';  //Fragment 虚拟节点
+import { InitStyled } from "@/components/main/index/section/styled";
+import TicketFolder from "@/components/main/ticketFolder/section"
 
-export default class extends React.Component {
+export default class extends PureComponent {
     render() {
         return (
             <Fragment>
-                <div>票夹组件</div>
+                <InitStyled/>
+                <TicketFolder/>
             </Fragment>
         )
     }

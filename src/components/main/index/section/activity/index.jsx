@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';  //Fragment 虚拟节点
 import { connect } from "react-redux";
-import { ActivityDiv, ActivityDiv_a } from "@/components/main/index/section/styled";
+import { ActivityDiv_a } from "@/components/main/index/section/styled";
+// import { ActivityDiv } from "@/components/main/index/section/styled";
 // import { loadIndexAsync } from "@/components/main/index/actionCreator";
 import { loadIndexActivityAsync } from "@/components/main/index/actionCreator"
 
@@ -10,8 +11,6 @@ class Activity extends PureComponent {
     render() {
         return (
             this.props.activity.size ? (
-                console.log(),
-
                 <ActivityDiv_a>
                     <div className="Activity_top">
                         <div className="Activity_top_l">
